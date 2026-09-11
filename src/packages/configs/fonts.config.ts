@@ -1,55 +1,31 @@
-import { Inter, Public_Sans } from "next/font/google";
+import { Inter, JetBrains_Mono, Plus_Jakarta_Sans } from "next/font/google";
 
-export type FontRole =
-  | "ui"
-  | "premium"
-  | "technical"
-  | "editorial"
-  | "enterprise";
-
-export interface FontMeta {
-  role: FontRole;
-  family: string;
-  variable: string;
-  category: "sans" | "serif";
-}
-
-// UI
 export const inter = Inter({
-  subsets: ["latin"],
   variable: "--font-inter",
+  subsets: ["latin"],
   display: "swap",
 });
 
-const publicSansHeading = Public_Sans({
+export const jakarta = Plus_Jakarta_Sans({
+  variable: "--font-jakarta",
   subsets: ["latin"],
-  variable: "--font-heading",
+  display: "swap",
 });
 
-export const fonts: FontMeta[] = [
-  {
-    role: "ui",
-    family: "Inter",
-    variable: inter.variable,
-    category: "sans",
-  },
-  {
-    role: "ui",
-    family: "Public Sans",
-    variable: publicSansHeading.variable,
-    category: "sans",
-  },
-];
+export const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
+  subsets: ["latin"],
+  display: "swap",
+});
 
-export const DESIGN_LANGUAGE = {
-  MINIMAL: {
-    heading: "Geist",
-    body: "Inter",
-  },
-  TAX_GURU: {
-    heading: "Inter",
-    body: "Public Sans",
-  },
+export const fonts = {
+  sans: inter,
+  heading: jakarta,
+  mono: jetbrainsMono,
 } as const;
 
-export type DesignLanguage = keyof typeof DESIGN_LANGUAGE;
+export const fontVariables = [
+  fonts.sans.variable,
+  fonts.heading.variable,
+  fonts.mono.variable,
+].join(" ");

@@ -1,7 +1,9 @@
 import axios from "axios";
-import { SERVICE_LABELS } from "@/packages/configs/app.config";
+import { appConfig } from "@/packages/configs/app.config";
 import { envContactConfig } from "@/packages/env/contact.env";
 import type { LeadInput } from "@/packages/schemas/lead.schema";
+
+const SERVICE_LABELS = appConfig.services;
 
 const WHATSAPP_API_URL = `https://graph.facebook.com/${envContactConfig.WHATSAPP_API_VERSION}/${envContactConfig.WHATSAPP_PHONE_NUMBER_ID}/messages`;
 
@@ -11,7 +13,7 @@ const buildMessageText = (lead: LeadInput): string => {
     `*FullName:* ${lead.fullname}`,
     `*Phone:* ${lead.phone}`,
     lead.email ? `*Email:* ${lead.email}` : null,
-    `*Service:* ${SERVICE_LABELS[lead.service]}`,
+    `*Service:* ${SERVICE_LABELS[lead.service as keyof typeof SERVICE_LABELS]}`,
     lead.message ? `*Message:* ${lead.message}` : null,
   ].filter(Boolean);
 

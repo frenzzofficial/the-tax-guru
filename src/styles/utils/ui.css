@@ -1,0 +1,214 @@
+/* Shared UI primitives */
+
+@layer utilities {
+  /* ========================================
+     Primary Action
+     Shared by Button + Link
+     ======================================== */
+
+  .ui-action-primary {
+    isolation: isolate;
+    position: relative;
+    overflow: hidden;
+
+    background: linear-gradient(
+      135deg,
+      var(--brand-primary) 0%,
+      var(--brand-secondary) 100%
+    );
+
+    color: var(--primary-foreground);
+
+    box-shadow:
+      0 8px 24px color-mix(in oklch, var(--brand-primary) 22%, transparent),
+      0 2px 6px color-mix(in oklch, var(--brand-secondary) 18%, transparent);
+
+    transform: translateZ(0);
+
+    transition:
+      transform 300ms ease,
+      box-shadow 300ms ease;
+  }
+
+  /* Shine layer */
+
+  .ui-action-primary::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    z-index: -1;
+
+    pointer-events: none;
+
+    background: linear-gradient(
+      110deg,
+      transparent 20%,
+      color-mix(in oklch, var(--primary-foreground) 20%, transparent) 42%,
+      color-mix(in oklch, var(--primary-foreground) 42%, transparent) 50%,
+      transparent 78%
+    );
+
+    transform: translateX(-120%) skewX(-18deg);
+
+    transition: transform 650ms ease;
+  }
+
+  .ui-action-primary:hover {
+    transform: translateY(-2px) scale(1.015);
+
+    box-shadow:
+      0 14px 34px color-mix(in oklch, var(--brand-primary) 28%, transparent),
+      0 4px 10px color-mix(in oklch, var(--brand-secondary) 20%, transparent);
+  }
+
+  .ui-action-primary:hover::after {
+    transform: translateX(120%) skewX(-18deg);
+  }
+
+  .ui-action-primary:active {
+    transform: translateY(0) scale(0.985);
+  }
+
+  .ui-action-primary:focus-visible {
+    outline: none;
+
+    box-shadow:
+      0 0 0 3px color-mix(in oklch, var(--ring) 35%, transparent),
+      0 8px 24px color-mix(in oklch, var(--brand-primary) 22%, transparent);
+  }
+
+  /* ========================================
+     Secondary Action
+     Shared interaction primitive
+     ======================================== */
+
+  .ui-action-secondary {
+    transition:
+      background-color 200ms ease,
+      border-color 200ms ease,
+      color 200ms ease,
+      transform 200ms ease,
+      box-shadow 200ms ease;
+  }
+
+  .ui-action-secondary:hover {
+    transform: translateY(-1px);
+  }
+
+  .ui-action-secondary:active {
+    transform: translateY(0) scale(0.985);
+  }
+
+  /* ========================================
+     Outline Action
+     Shared interaction primitive
+     ======================================== */
+
+  .ui-action-outline {
+    transition:
+      background-color 200ms ease,
+      border-color 200ms ease,
+      color 200ms ease,
+      transform 200ms ease,
+      box-shadow 200ms ease;
+  }
+
+  .ui-action-outline:hover {
+    transform: translateY(-1px);
+
+    box-shadow: 0 6px 18px color-mix(in oklch, var(--primary) 10%, transparent);
+  }
+
+  .ui-action-outline:active {
+    transform: translateY(0) scale(0.985);
+  }
+
+  /* ========================================
+     Link Underline
+     Shared by textual Links / Buttons
+     ======================================== */
+
+  .ui-link-underline {
+    position: relative;
+  }
+
+  .ui-link-underline::after {
+    content: "";
+
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    height: 1.5px;
+
+    pointer-events: none;
+
+    background-color: currentColor;
+
+    transform: scaleX(0);
+    transform-origin: center;
+
+    transition: transform 300ms ease;
+  }
+
+  .ui-link-underline:hover::after,
+  .ui-link-underline:focus-visible::after {
+    transform: scaleX(1);
+  }
+
+  /* ========================================
+     Icon / Arrow Motion
+     ======================================== */
+
+  .ui-action-icon {
+    transition: transform 250ms ease;
+  }
+
+  .group:hover .ui-action-icon {
+    transform: translateX(3px);
+  }
+
+  .group:active .ui-action-icon {
+    transform: translateX(1px);
+  }
+
+  /* ========================================
+     Shared Focus
+     ======================================== */
+
+  .ui-focus-ring:focus-visible {
+    outline: none;
+
+    box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 30%, transparent);
+  }
+
+  /* ========================================
+     Reduced Motion
+     ======================================== */
+
+  @media (prefers-reduced-motion: reduce) {
+    .ui-action-primary,
+    .ui-action-secondary,
+    .ui-action-outline,
+    .ui-link-underline::after,
+    .ui-action-icon {
+      transition: none;
+    }
+
+    .ui-action-primary::after {
+      display: none;
+    }
+
+    .ui-action-primary:hover,
+    .ui-action-primary:active,
+    .ui-action-secondary:hover,
+    .ui-action-secondary:active,
+    .ui-action-outline:hover,
+    .ui-action-outline:active {
+      transform: none;
+    }
+  }
+}

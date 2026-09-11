@@ -1,11 +1,11 @@
 import fs from "node:fs";
 import path from "node:path";
 import type { MetadataRoute } from "next";
-import {
-  BASE_URL,
-  LOCATION_SLUGS,
-  SERVICE_SLUGS,
-} from "@/packages/configs/app.config";
+import { appConfig } from "@/packages/configs/app.config";
+
+const BASE_URL = appConfig.site.url;
+const SERVICE_SLUGS = Object.keys(appConfig.services);
+const LOCATION_SLUGS = Object.keys(appConfig.locations);
 
 const getBlogSlugs = (): string[] => {
   const blogDir = path.join(process.cwd(), "content", "blogs");

@@ -6,6 +6,9 @@ import { emailRules, phoneRules } from "../configs/schema.config";
 const envConfigSchema = z.object({
   NEXT_PUBLIC_CONTACT_PHONE: phoneRules.default("1234567890"),
   NEXT_PUBLIC_CONTACT_PHONE_ALT: phoneRules.optional().default("1234567890"),
+  NEXT_PUBLIC_CONTACT_PHONE_KANPUR: phoneRules.optional().default("1234567890"),
+  NEXT_PUBLIC_CONTACT_PHONE_DELHI: phoneRules.optional().default("1234567890"),
+
   NEXT_PUBLIC_CONTACT_EMAIL: emailRules.default("contact@thetaxguru.in"),
 
   // WhatsApp Cloud API (Meta Graph API) — server-only, never expose to client
@@ -34,7 +37,20 @@ if (!parsed.success) {
 }
 
 // ✅ Export validated config
-export const envContactConfig = Object.freeze(parsed.data);
+export const envContactConfig = Object.freeze({
+  CONTACT_PHONE: parsed.data.NEXT_PUBLIC_CONTACT_PHONE,
+  CONTACT_PHONE_ALT: parsed.data.NEXT_PUBLIC_CONTACT_PHONE_ALT,
+  CONTACT_PHONE_KANPUR: parsed.data.NEXT_PUBLIC_CONTACT_PHONE_KANPUR,
+  CONTACT_PHONE_DELHI: parsed.data.NEXT_PUBLIC_CONTACT_PHONE_DELHI,
+
+  CONTACT_EMAIL: parsed.data.NEXT_PUBLIC_CONTACT_EMAIL,
+
+  WHATSAPP_TOKEN: parsed.data.WHATSAPP_TOKEN,
+  WHATSAPP_PHONE_NUMBER_ID: parsed.data.WHATSAPP_PHONE_NUMBER_ID,
+  WHATSAPP_RECIPIENT_NUMBER: parsed.data.WHATSAPP_RECIPIENT_NUMBER,
+  WHATSAPP_API_VERSION: parsed.data.WHATSAPP_API_VERSION,
+  WHATSAPP_MESSAGE_TEMPLATE: parsed.data.WHATSAPP_MESSAGE_TEMPLATE,
+});
 
 // ✅ Optional: Export type
 export type EnvContactConfig = z.infer<typeof envConfigSchema>;

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { SERVICE_SLUGS } from "../configs/app.config";
+import { appConfig } from "../configs/app.config";
 import {
   emailRules,
   fullnameRules,
@@ -10,7 +10,7 @@ export const leadSchema = z.object({
   fullname: fullnameRules,
   phone: phoneRules,
   email: emailRules,
-  service: z.enum(SERVICE_SLUGS),
+  service: z.enum([...appConfig.services, "other"]),
   message: z.string().max(500).optional(),
 });
 

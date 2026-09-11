@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { BASE_URL } from "@/packages/configs/app.config";
+import { appConfig } from "@/packages/configs/app.config";
 
 const robots = (): MetadataRoute.Robots => ({
   rules: [
@@ -9,7 +9,7 @@ const robots = (): MetadataRoute.Robots => ({
       disallow: ["/api/", "/thank-you"],
     },
   ],
-  sitemap: `${BASE_URL}/sitemap.xml`,
+  sitemap: `${appConfig.site.url}/sitemap.xml`,
 });
 
 export default robots;

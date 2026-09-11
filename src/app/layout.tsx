@@ -1,29 +1,16 @@
-import "../styles/globals.css";
+import "@/styles/globals.css";
+import type { Metadata } from "next";
 import AppClientLayout from "@/components/layouts/AppClientLayout";
-import { fonts, inter } from "@/packages/configs/fonts.config";
-import { appMetaData } from "@/packages/metadata/app.metadata";
-import { cn } from "@/packages/utils/cn";
+import { fontVariables } from "@/packages/configs/fonts.config";
 
-export const metadata = appMetaData;
+export const metadata: Metadata = {
+  title: "The Tax Guru",
+  description: "Tax and compliance services for businesses and professionals.",
+};
 
-const headingFont = fonts.find((f) => f.family === "Public Sans");
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en"
-      className={cn(
-        "h-full",
-        "antialiased",
-        inter.variable,
-        headingFont?.variable,
-      )}
-      suppressHydrationWarning
-    >
+    <html lang="en" className={`${fontVariables} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <AppClientLayout>{children}</AppClientLayout>
       </body>

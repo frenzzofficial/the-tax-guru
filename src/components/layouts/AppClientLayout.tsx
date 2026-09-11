@@ -1,21 +1,16 @@
-"use client";
-import FontProvider from "../providers/FontProvider";
-import { Toaster } from "../ui/shadcn/sonner";
 import Footer from "./Footer";
 import Header from "./Header";
 
 interface AppClientLayoutProps {
   children: React.ReactNode;
 }
-
-const AppClientLayout = ({ children }: Readonly<AppClientLayoutProps>) => {
+const AppClientLayout = ({ children }: AppClientLayoutProps) => {
   return (
-    <FontProvider>
+    <>
       <Header />
-      <main className="flex flex-col min-h-screen">{children}</main>
+      {children}
       <Footer />
-      <Toaster />
-    </FontProvider>
+    </>
   );
 };
 
