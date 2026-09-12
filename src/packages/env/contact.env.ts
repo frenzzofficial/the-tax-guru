@@ -4,10 +4,10 @@ import { emailRules, phoneRules } from "../configs/schema.config";
 // ✅ Load environment variables from .env file
 // ✅ Define schema with defaults and transformations
 const envConfigSchema = z.object({
-  NEXT_PUBLIC_CONTACT_PHONE: phoneRules.default("1234567890"),
-  NEXT_PUBLIC_CONTACT_PHONE_ALT: phoneRules.optional().default("1234567890"),
-  NEXT_PUBLIC_CONTACT_PHONE_KANPUR: phoneRules.optional().default("1234567890"),
-  NEXT_PUBLIC_CONTACT_PHONE_DELHI: phoneRules.optional().default("1234567890"),
+  NEXT_PUBLIC_CONTACT_PHONE: phoneRules.default(""),
+  NEXT_PUBLIC_CONTACT_PHONE_ALT: phoneRules.optional().default(""),
+  NEXT_PUBLIC_CONTACT_PHONE_KANPUR: phoneRules.optional().default(""),
+  NEXT_PUBLIC_CONTACT_PHONE_DELHI: phoneRules.optional().default(""),
 
   NEXT_PUBLIC_CONTACT_EMAIL: emailRules.default("contact@thetaxguru.in"),
 

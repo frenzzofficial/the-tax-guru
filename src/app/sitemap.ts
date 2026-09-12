@@ -4,8 +4,8 @@ import type { MetadataRoute } from "next";
 import { appConfig } from "@/packages/configs/app.config";
 
 const BASE_URL = appConfig.site.url;
-const SERVICE_SLUGS = Object.keys(appConfig.services);
-const LOCATION_SLUGS = Object.keys(appConfig.locations);
+const SERVICE_SLUGS = appConfig.services.map((service) => service.id);
+const LOCATION_SLUGS = appConfig.locations;
 
 const getBlogSlugs = (): string[] => {
   const blogDir = path.join(process.cwd(), "content", "blogs");
@@ -29,19 +29,19 @@ const sitemap = (): MetadataRoute.Sitemap => {
       priority: 1.0,
     },
     {
-      url: `${BASE_URL}/services`,
+      url: `${BASE_URL}${appConfig.routes.services}`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
-      url: `${BASE_URL}/about-us`,
+      url: `${BASE_URL}${appConfig.routes.about}`,
       lastModified: now,
       changeFrequency: "yearly",
       priority: 0.5,
     },
     {
-      url: `${BASE_URL}/contact-us`,
+      url: `${BASE_URL}${appConfig.routes.contact}`,
       lastModified: now,
       changeFrequency: "yearly",
       priority: 0.6,

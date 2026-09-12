@@ -2,34 +2,37 @@ import type { Metadata } from "next";
 import { appConfig } from "../configs/app.config";
 
 const seo: Metadata = {
-  title: appConfig.metadata.title,
+  metadataBase: new URL(appConfig.site.url),
+
+  title: {
+    default: appConfig.metadata.title,
+    template: appConfig.metadata.titleTemplate,
+  },
   description: appConfig.metadata.description,
+  keywords: [...appConfig.metadata.keywords],
+  authors: [...appConfig.metadata.authors],
+  creator: appConfig.metadata.creator,
+  publisher: appConfig.metadata.publisher,
+
+  robots: appConfig.metadata.robots,
+
   openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: appConfig.site.url,
-    images: [
-      {
-        url: `${appConfig.site.url}/og-image.png`,
-        width: 1200,
-        height: 630,
-        alt: "The Tax Guru",
-      },
-    ],
+    type: appConfig.metadata.openGraph.type,
+    locale: appConfig.metadata.openGraph.locale,
+    siteName: appConfig.metadata.openGraph.siteName,
+    title: appConfig.metadata.openGraph.title,
+    description: appConfig.metadata.openGraph.description,
+    images: [...appConfig.metadata.openGraph.images],
   },
+
   twitter: {
-    card: "summary_large_image",
-    title: "The Tax Guru",
-    description: appConfig.metadata.description,
-    images: [
-      {
-        url: "https://the-tax-guru.vercel.app/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "The Tax Guru",
-      },
-    ],
+    card: appConfig.metadata.twitter.card,
+    title: appConfig.metadata.twitter.title,
+    description: appConfig.metadata.twitter.description,
+    images: [...appConfig.metadata.twitter.images],
   },
+
+  icons: appConfig.metadata.icons,
 };
 
 export default seo;

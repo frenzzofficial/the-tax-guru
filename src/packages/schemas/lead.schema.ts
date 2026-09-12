@@ -6,11 +6,13 @@ import {
   phoneRules,
 } from "../configs/schema.config";
 
+const SERVICE_IDS = appConfig.services.map((service) => service.id);
+
 export const leadSchema = z.object({
   fullname: fullnameRules,
   phone: phoneRules,
   email: emailRules,
-  service: z.enum([...appConfig.services, "other"]),
+  service: z.enum([...SERVICE_IDS, "other"]),
   message: z.string().max(500).optional(),
 });
 

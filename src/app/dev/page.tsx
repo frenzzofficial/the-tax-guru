@@ -1,20 +1,12 @@
-import { Button } from "@/components/ui/button/Button";
-import { LinkExamples } from "@/components/ui/link/LinkExamples";
+import ButtonExamples from "@/components/ui/examples/ButtonExamples";
+import { LinkExamples } from "@/components/ui/examples/LinkExamples";
 
 const DevPage = () => {
   return (
-    <>
+    <div className="flex flex-col gap-8 p-8">
       <LinkExamples />
-      <div>
-        <Button variant="primary">Get Started →</Button>
-
-        <Button variant="secondary">View Services</Button>
-
-        <Button variant="outline">Contact Us</Button>
-
-        <Button variant="link">Learn More →</Button>
-      </div>
-    </>
+      <ButtonExamples />
+    </div>
   );
 };
 

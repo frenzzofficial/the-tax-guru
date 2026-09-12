@@ -80,6 +80,76 @@
   }
 
   /* ========================================
+     Accent Action
+     Shared by Button + Link — the solid green CTA
+     (e.g. "Get a Free Consultation", "Schedule an Appointment")
+     ======================================== */
+
+  .ui-action-accent {
+    isolation: isolate;
+    position: relative;
+    overflow: hidden;
+
+    background: var(--brand-accent);
+    color: var(--brand-accent-foreground);
+
+    box-shadow: 0 8px 24px
+      color-mix(in oklch, var(--brand-accent) 30%, transparent);
+
+    transform: translateZ(0);
+
+    transition:
+      transform 300ms ease,
+      box-shadow 300ms ease;
+  }
+
+  .ui-action-accent::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    z-index: -1;
+
+    pointer-events: none;
+
+    background: linear-gradient(
+      110deg,
+      transparent 20%,
+      color-mix(in oklch, white 45%, transparent) 42%,
+      color-mix(in oklch, white 65%, transparent) 50%,
+      transparent 78%
+    );
+
+    transform: translateX(-120%) skewX(-18deg);
+
+    transition: transform 650ms ease;
+  }
+
+  .ui-action-accent:hover {
+    transform: translateY(-2px) scale(1.015);
+
+    box-shadow: 0 14px 34px
+      color-mix(in oklch, var(--brand-accent) 38%, transparent);
+  }
+
+  .ui-action-accent:hover::after {
+    transform: translateX(120%) skewX(-18deg);
+  }
+
+  .ui-action-accent:active {
+    transform: translateY(0) scale(0.985);
+  }
+
+  .ui-action-accent:focus-visible {
+    outline: none;
+
+    box-shadow:
+      0 0 0 3px color-mix(in oklch, var(--brand-accent) 45%, transparent),
+      0 8px 24px color-mix(in oklch, var(--brand-accent) 30%, transparent);
+  }
+
+  /* ========================================
      Secondary Action
      Shared interaction primitive
      ======================================== */
@@ -191,6 +261,7 @@
 
   @media (prefers-reduced-motion: reduce) {
     .ui-action-primary,
+    .ui-action-accent,
     .ui-action-secondary,
     .ui-action-outline,
     .ui-link-underline::after,
@@ -198,12 +269,15 @@
       transition: none;
     }
 
-    .ui-action-primary::after {
+    .ui-action-primary::after,
+    .ui-action-accent::after {
       display: none;
     }
 
     .ui-action-primary:hover,
     .ui-action-primary:active,
+    .ui-action-accent:hover,
+    .ui-action-accent:active,
     .ui-action-secondary:hover,
     .ui-action-secondary:active,
     .ui-action-outline:hover,

@@ -1,0 +1,16 @@
+:root {
+  /* Brand colors — matches appConfig.site.brand. ui.css's shared
+         action utilities (.ui-action-primary, .ui-action-accent) read
+         these directly; keep them in sync with app.config.ts. */
+  --brand-primary: #0c71c3;
+  --brand-secondary: #005a87;
+  --brand-accent: #12eaa6;
+  --brand-accent-foreground: #063d2f;
+}
+
+@theme inline {
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-secondary: var(--brand-secondary);
+  --color-brand-accent: var(--brand-accent);
+  --color-brand-accent-foreground: var(--brand-accent-foreground);
+}

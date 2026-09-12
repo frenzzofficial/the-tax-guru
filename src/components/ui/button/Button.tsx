@@ -1,15 +1,14 @@
-"use client";
-
 import { cva, type VariantProps } from "class-variance-authority";
 import * as React from "react";
 
+import { ArrowRightIcon } from "@/components/ui/icons/ArrowRightIcon";
 import { cn } from "@/packages/utils/cn";
 
 const buttonVariants = cva(
   [
-    "relative inline-flex items-center justify-center",
+    "group relative inline-flex items-center justify-center gap-2",
     "font-medium whitespace-nowrap",
-    "outline-none",
+    "outline-none select-none",
     "transition-all duration-300 ease-out",
     "focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
     "disabled:pointer-events-none disabled:opacity-50",
@@ -18,20 +17,25 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
+        // Solid brand-gradient CTA — "Get Started", "Talk to a tax expert"
         primary: ["ui-action-primary", "rounded-lg", "px-5 py-2.5", "text-sm"],
 
+        // Solid brand-accent (green) CTA — "Get a Free Consultation"
+        accent: ["ui-action-accent", "rounded-lg", "px-5 py-2.5", "text-sm"],
+
+        // White surface, brand-blue border — "View Services"
         secondary: [
           "ui-action-secondary",
           "rounded-lg",
-          "border border-primary/20",
-          "bg-primary/5",
+          "border-2 border-primary/25",
+          "bg-background",
           "px-5 py-2.5",
-          "text-sm text-background",
-          "hover:border-primary/40",
-          "hover:bg-primary",
-          "hover:text-primary-foreground",
+          "text-sm text-primary",
+          "hover:border-primary",
+          "hover:bg-primary/5",
         ],
 
+        // Neutral, low-emphasis border — tertiary actions
         outline: [
           "ui-action-outline",
           "rounded-lg",
@@ -44,6 +48,7 @@ const buttonVariants = cva(
           "hover:text-primary",
         ],
 
+        // Plain text link styled as a button — used inline in copy
         link: [
           "ui-link-underline",
           "rounded-md",
@@ -72,23 +77,48 @@ const buttonVariants = cva(
 );
 
 type ButtonProps = React.ComponentProps<"button"> &
-  VariantProps<typeof buttonVariants>;
+  VariantProps<typeof buttonVariants> & {
+    /**
+     * Show the trailing arrow icon (on by default for primary/accent/
+     * secondary CTAs, matching the Figma buttons). Pass `false` to
+     * suppress it, or pass a custom node to override the icon.
+     */
+    icon?: React.ReactNode | false;
+  };
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, type = "button", ...props }, ref) => {
+  (
+    { className, variant, size, type = "button", icon, children, ...props },
+    ref,
+  ) => {
+    const showsIconByDefault =
+      variant === "primary" ||
+      variant === "accent" ||
+      variant === "secondary" ||
+      variant === undefined;
+
+    const resolvedIcon =
+      icon === false
+        ? null
+        : (icon ??
+          (showsIconByDefault && size !== "icon" ? (
+            <ArrowRightIcon className="size-4" />
+          ) : null));
+
     return (
       <button
         ref={ref}
         type={type}
-        className={cn(
-          buttonVariants({
-            variant,
-            size,
-          }),
-          className,
-        )}
+        className={cn(buttonVariants({ variant, size }), className)}
         {...props}
-      />
+      >
+        {children}
+        {resolvedIcon ? (
+          <span className="ui-action-icon inline-flex shrink-0">
+            {resolvedIcon}
+          </span>
+        ) : null}
+      </button>
     );
   },
 );

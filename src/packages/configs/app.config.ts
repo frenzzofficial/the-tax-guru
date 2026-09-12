@@ -1,5 +1,39 @@
 import { envContactConfig } from "../env/contact.env";
 import { envPublicConfig } from "../env/public.env";
+import { services } from "./services.config";
+
+/**
+ * Canonical office list — single source of truth for physical
+ * locations. `appConfig.locations` (city slugs, used by the sitemap)
+ * is derived from this below. Don't hardcode a second list.
+ */
+const offices = [
+  {
+    id: "kanpur",
+    city: "Kanpur",
+    title: "Kanpur Office",
+
+    address: "116/652, Ganesh Nagar, Rawatpur, Kanpur-208019, Uttar Pradesh",
+
+    phone: [
+      envContactConfig.CONTACT_PHONE_KANPUR,
+      envContactConfig.CONTACT_PHONE_ALT,
+    ],
+  },
+
+  {
+    id: "delhi",
+    city: "Delhi",
+    title: "Delhi Office",
+
+    address: "RFZ-32, Nihal Vihar, Nangloi, New Delhi, Delhi 110041",
+
+    phone: [
+      envContactConfig.CONTACT_PHONE_DELHI,
+      envContactConfig.CONTACT_PHONE_ALT,
+    ],
+  },
+] as const;
 
 export const appConfig = {
   app: {
@@ -100,20 +134,19 @@ export const appConfig = {
       description: envPublicConfig.APP_DESCRIPTION,
       images: [
         {
-          url: "/og-image.png",
+          url: envPublicConfig.OG_IMAGE_URL ?? "/og-image.png",
           width: 1200,
           height: 630,
-          alt: "The Tax Guru - Tax & Compliance Services",
+          alt: `${envPublicConfig.APP_NAME} - Tax & Compliance Services`,
         },
       ],
     },
 
     twitter: {
       card: "summary_large_image",
-      title: "The Tax Guru | Tax & Compliance Services",
-      description:
-        "Tax, GST, registration and compliance services for professionals, freelancers and businesses across India.",
-      images: ["/og-image.png"],
+      title: `${envPublicConfig.APP_NAME} | Tax & Compliance Services`,
+      description: envPublicConfig.APP_DESCRIPTION,
+      images: [envPublicConfig.OG_IMAGE_URL ?? "/og-image.png"],
     },
 
     icons: {
@@ -123,17 +156,11 @@ export const appConfig = {
     },
   },
 
-  services: [
-    "gst-registration",
-    "trademark-registration",
-    "gst-itr-return",
-    "msme-registration",
-    "pf-esi-registration",
-    "iec-registration",
-    "fssai-registration",
-  ],
+  services,
 
-  locations: ["kanpur", "delhi"],
+  // City slugs derived from `offices` below — always in sync, never
+  // hardcode a second list.
+  locations: offices.map((office) => office.id),
 
   /* ========================================
      Contact
@@ -151,34 +178,7 @@ export const appConfig = {
       time: "10:00 AM - 07:00 PM",
     },
 
-    offices: [
-      {
-        id: "kanpur",
-        city: "Kanpur",
-        title: "Kanpur Office",
-
-        address:
-          "116/652, Ganesh Nagar, Rawatpur, Kanpur-208019, Uttar Pradesh",
-
-        phone: [
-          envContactConfig.CONTACT_PHONE_KANPUR,
-          envContactConfig.CONTACT_PHONE_ALT,
-        ],
-      },
-
-      {
-        id: "delhi",
-        city: "Delhi",
-        title: "Delhi Office",
-
-        address: "RFZ-32, Nihal Vihar, Nangloi, New Delhi, Delhi 110041",
-
-        phone: [
-          envContactConfig.CONTACT_PHONE_DELHI,
-          envContactConfig.CONTACT_PHONE_ALT,
-        ],
-      },
-    ],
+    offices,
   },
 
   /* ========================================
@@ -255,8 +255,8 @@ export const appConfig = {
         },
 
         phone: {
-          label: "+91 93054 68480",
-          href: "tel:+919305468480",
+          label: envContactConfig.CONTACT_PHONE,
+          href: `tel:${envContactConfig.CONTACT_PHONE}`,
         },
       },
     },
@@ -270,7 +270,7 @@ export const appConfig = {
 
         phone: {
           label: "Call Us",
-          href: "tel:+919305468480",
+          href: `tel:${envContactConfig.CONTACT_PHONE}`,
         },
       },
     },
@@ -309,37 +309,12 @@ export const appConfig = {
       {
         title: "Services",
 
-        items: [
-          {
-            label: "GST Registration",
-            href: "/services/gst",
-          },
-
-          {
-            label: "Income Tax Return",
-            href: "/services/income-tax",
-          },
-
-          {
-            label: "Trademark Registration",
-            href: "/services/trademark",
-          },
-
-          {
-            label: "MSME Registration",
-            href: "/services/msme",
-          },
-
-          {
-            label: "IEC Registration",
-            href: "/services/iec",
-          },
-
-          {
-            label: "FSSAI Registration",
-            href: "/services/fssai",
-          },
-        ],
+        // Always in sync with the canonical catalog — see `services`
+        // at the top of this file.
+        items: services.map((service) => ({
+          label: service.title,
+          href: service.href,
+        })),
       },
 
       {

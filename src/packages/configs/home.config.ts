@@ -91,95 +91,24 @@ export const homeConfig = {
     description:
       "From registrations to recurring filings, get practical support from one trusted tax and compliance partner.",
 
-    items: [
-      {
-        id: "gst",
-        title: "GST Registration & Filing",
-        shortTitle: "GST",
-        description:
-          "GST registration, return filing, amendments, invoice guidance and ongoing GST support.",
-        href: "/services/gst",
-      },
-      {
-        id: "income-tax",
-        title: "Income Tax Return",
-        shortTitle: "ITR",
-        description:
-          "ITR filing, tax calculation, refund assistance and practical income tax guidance.",
-        href: "/services/income-tax",
-      },
-      {
-        id: "trademark",
-        title: "Trademark Registration",
-        shortTitle: "TM",
-        description:
-          "Protect your business name, logo or brand with trademark registration assistance.",
-        href: "/services/trademark",
-      },
-      {
-        id: "msme",
-        title: "MSME Registration",
-        shortTitle: "MSME",
-        description:
-          "Udyam/MSME registration support with documentation and application assistance.",
-        href: "/services/msme",
-      },
-      {
-        id: "iec",
-        title: "Import Export Code",
-        shortTitle: "IEC",
-        description:
-          "IEC registration support for businesses starting or expanding import-export activities.",
-        href: "/services/iec",
-      },
-      {
-        id: "fssai",
-        title: "FSSAI Registration",
-        shortTitle: "FSSAI",
-        description:
-          "Food business registration and compliance assistance for eligible businesses.",
-        href: "/services/fssai",
-      },
-      {
-        id: "pf-esi",
-        title: "PF / ESI Registration",
-        shortTitle: "PF",
-        description:
-          "Employee-related statutory registration and compliance support.",
-        href: "/services/pf-esi",
-      },
-      {
-        id: "business-registration",
-        title: "Business Registration",
-        shortTitle: "BUS",
-        description:
-          "Business setup and registration guidance based on your business requirements.",
-        href: "/services/business-registration",
-      },
-    ],
+    // Sourced directly from appConfig.services — the canonical
+    // catalog. Add/edit a service in app.config.ts, not here.
+    items: appConfig.services,
   },
 
   pricing: {
     eyebrow: "POPULAR SERVICES",
     title: "Simple pricing. No surprises.",
 
-    items: [
-      {
-        service: "GST Registration",
-        price: "₹499",
-        href: "/services/gst",
-      },
-      {
-        service: "Trademark Registration",
-        price: "₹999",
-        href: "/services/trademark",
-      },
-      {
-        service: "GST Return / ITR",
-        price: "₹499",
-        href: "/services/income-tax",
-      },
-    ],
+    // Only services with a listed starting price show up here —
+    // sourced from appConfig.services.
+    items: appConfig.services
+      .filter((service) => service.price !== null)
+      .map((service) => ({
+        service: service.title,
+        price: service.price,
+        href: service.href,
+      })),
 
     note: "Starting prices. Final pricing may vary depending on requirements.",
   },
@@ -371,6 +300,11 @@ export const homeConfig = {
           placeholder: "Select a service",
           type: "select",
           required: true,
+          // Sourced from appConfig.services — always in sync.
+          options: appConfig.services.map((service) => ({
+            label: service.title,
+            value: service.id,
+          })),
         },
         {
           name: "message",
@@ -384,108 +318,17 @@ export const homeConfig = {
       submitLabel: "Submit Enquiry",
     },
 
-    offices: [
-      {
-        city: "Kanpur",
-        title: "Kanpur Office",
-        address:
-          "116/652, Ganesh Nagar, Rawatpur, Kanpur-208019, Uttar Pradesh",
-        phone: ["+91-9305468480", "+91-8299404744"],
-      },
-      {
-        city: "Delhi",
-        title: "Delhi Office",
-        address: "RFZ-32, Nihal Vihar, Nangloi, New Delhi, Delhi 110041",
-        phone: ["+91-8299329104"],
-      },
-    ],
+    // Sourced from appConfig.contact — always matches the env-driven
+    // phone numbers instead of drifting from a hardcoded copy.
+    offices: appConfig.contact.offices,
 
-    email: "info@thetaxguru.in",
+    email: appConfig.contact.email,
 
-    workingHours: "Monday – Sunday · 10:00 AM – 07:00 PM",
+    workingHours: `${appConfig.contact.workingHours.days} · ${appConfig.contact.workingHours.time}`,
   },
 
-  footer: {
-    description:
-      "Tax, accounting, registration and compliance support for individuals and businesses across India.",
-
-    navigation: [
-      {
-        title: "Company",
-        items: [
-          {
-            label: "About Us",
-            href: "/about",
-          },
-          {
-            label: "Services",
-            href: "/services",
-          },
-          {
-            label: "Contact",
-            href: "/contact",
-          },
-        ],
-      },
-      {
-        title: "Services",
-        items: [
-          {
-            label: "GST Registration",
-            href: "/services/gst",
-          },
-          {
-            label: "Income Tax Return",
-            href: "/services/income-tax",
-          },
-          {
-            label: "Trademark Registration",
-            href: "/services/trademark",
-          },
-          {
-            label: "MSME Registration",
-            href: "/services/msme",
-          },
-          {
-            label: "IEC Registration",
-            href: "/services/iec",
-          },
-        ],
-      },
-      {
-        title: "Resources",
-        items: [
-          {
-            label: "Tax Resources",
-            href: "/resources",
-          },
-          {
-            label: "Tax Calculator",
-            href: "/tax-calculator",
-          },
-          {
-            label: "FAQs",
-            href: "/faq",
-          },
-        ],
-      },
-    ],
-
-    legal: [
-      {
-        label: "Privacy Policy",
-        href: "/privacy-policy",
-      },
-      {
-        label: "Terms & Conditions",
-        href: "/terms",
-      },
-      {
-        label: "Disclaimer",
-        href: "/disclaimer",
-      },
-    ],
-
-    copyright: "© The Tax Guru. All rights reserved.",
-  },
+  // Footer content lives in appConfig.footer only — it's a shared
+  // layout component, not homepage-specific. Read it from there
+  // (`import { appConfig } from "./app.config"`) rather than
+  // duplicating it here.
 } as const;
