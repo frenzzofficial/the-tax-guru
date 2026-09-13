@@ -1,15 +1,18 @@
+import WhatsAppButton from "../ui/button/WhatsAppButton";
 import Footer from "./Footer";
 import Header from "./Header";
 
-interface AppClientLayoutProps {
+type AppClientLayoutProps = {
   children: React.ReactNode;
-}
+};
+
 const AppClientLayout = ({ children }: AppClientLayoutProps) => {
   return (
     <>
       <Header />
       {children}
       <Footer />
+      <WhatsAppButton />
     </>
   );
 };

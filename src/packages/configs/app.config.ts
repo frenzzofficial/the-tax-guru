@@ -173,6 +173,13 @@ export const appConfig = {
 
     whatsapp: envContactConfig.CONTACT_PHONE,
 
+    // Prefilled text for the floating "click to chat" WhatsApp button.
+    // (Separate from the Graph API lead-notification flow in
+    // src/app/api/lead — that's server-to-owner; this is visitor-to-
+    // business via a plain wa.me deep link.)
+    whatsappMessage:
+      "Hi! I'd like to know more about your tax and compliance services.",
+
     workingHours: {
       days: "Monday - Sunday",
       time: "10:00 AM - 07:00 PM",
@@ -283,6 +290,14 @@ export const appConfig = {
   footer: {
     description:
       "Tax, accounting, registration and compliance support for individuals and businesses across India.",
+
+    newsletter: {
+      title: "Stay updated with tax insights",
+      description:
+        "Get the latest updates, compliance deadlines and helpful resources.",
+      placeholder: "Enter your email address",
+      submitLabel: "Subscribe",
+    },
 
     navigation: [
       {

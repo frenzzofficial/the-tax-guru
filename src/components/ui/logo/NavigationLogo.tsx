@@ -19,8 +19,8 @@ type NavigationLogoProps = {
  */
 const NavigationLogo = ({
   src,
-  width = 120,
-  height = 120,
+  width = 168,
+  height = 54,
   className,
 }: NavigationLogoProps) => (
   <NextLink
@@ -34,7 +34,7 @@ const NavigationLogo = ({
         alt={appConfig.site.logo.alt}
         width={width}
         height={height}
-        className={className}
+        className={className ?? "h-10 w-auto"}
         priority
       />
     </div>

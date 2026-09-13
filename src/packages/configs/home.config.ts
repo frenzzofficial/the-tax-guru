@@ -148,6 +148,88 @@ export const homeConfig = {
     ],
   },
 
+  whyChooseUs: {
+    eyebrow: "WHY CHOOSE US",
+
+    title: "A partner you can rely on",
+
+    description:
+      "Practical solutions, professional support and a genuine focus on your compliance needs.",
+
+    items: [
+      {
+        title: "Experienced Professionals",
+        description: "Practical advice from qualified professionals.",
+      },
+      {
+        title: "Transparent Pricing",
+        description: "Clear pricing with no hidden costs.",
+      },
+      {
+        title: "Secure & Confidential",
+        description: "Your data and documents are always protected.",
+      },
+      {
+        title: "End-to-End Support",
+        description: "We're with you at every step.",
+      },
+    ],
+  },
+
+  faq: {
+    eyebrow: "FREQUENTLY ASKED QUESTIONS",
+
+    title: "Quick answers to common questions",
+
+    action: {
+      label: "View All FAQs",
+      href: "/faq",
+    },
+
+    items: [
+      {
+        question: "Do I need GST registration for my business?",
+        answer:
+          "It depends on your business turnover and structure. We'll review your case and let you know exactly what's required.",
+      },
+      {
+        question: "What is the cost of GST registration?",
+        answer:
+          "GST registration starts at ₹499. Final pricing depends on your specific business requirements.",
+      },
+      {
+        question: "How long does trademark registration take?",
+        answer:
+          "Filing is quick, but full registration typically takes several months depending on objections and examination.",
+      },
+      {
+        question: "Can you help with both online and offline services?",
+        answer:
+          "Yes — we support clients both online across India and offline at our Kanpur and Delhi offices.",
+      },
+      {
+        question:
+          "Do you assist with income tax return filing for salaried individuals?",
+        answer:
+          "Yes, we handle ITR filing for salaried individuals, freelancers and business owners alike.",
+      },
+    ],
+
+    stillHaveQuestions: {
+      title: "Still have questions?",
+      description: "Our experts are here to help.",
+      points: [
+        "Free initial consultation",
+        "Personalised guidance",
+        "Quick response",
+      ],
+      action: {
+        label: "Talk to an Expert",
+        href: "/contact",
+      },
+    },
+  },
+
   audience: {
     eyebrow: "WHO WE SERVE",
 
@@ -183,36 +265,8 @@ export const homeConfig = {
     },
   },
 
-  about: {
-    eyebrow: "ABOUT THE TAX GURU",
-
-    title: "A single partner for tax, accounting & compliance.",
-
-    description:
-      "The Tax Guru brings taxation, accounting, registration and advisory services together so individuals and businesses can focus on what they do best.",
-
-    experience: "15+ Years",
-
-    experienceLabel: "Tax & compliance experience",
-
-    clients: "500+",
-
-    clientsLabel: "Satisfied clients",
-
-    industries: [
-      "Banking & Finance",
-      "Manufacturing",
-      "Chemicals",
-      "Food & Beverage",
-      "Pharmaceuticals",
-      "Technology",
-    ],
-
-    action: {
-      label: "About The Tax Guru",
-      href: "/about",
-    },
-  },
+  // Full "About" page content lives in about.config.ts, not here —
+  // this file is homepage-section data only.
 
   testimonials: {
     eyebrow: "CLIENT STORIES",
@@ -261,6 +315,12 @@ export const homeConfig = {
         href: "tel:+919305468480",
       },
     },
+
+    features: [
+      "Free Initial Consultation",
+      "Expert Guidance",
+      "Tailored Solutions",
+    ],
   },
 
   contact: {
