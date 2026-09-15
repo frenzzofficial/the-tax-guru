@@ -16,8 +16,8 @@ const Navbar = () => {
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
   return (
-    <div>
-      <div className="container-page flex h-16 items-center justify-between gap-4 md:h-20 px-4  ">
+    <>
+      <div className="container-page flex h-16 items-center justify-between gap-4 md:h-20">
         <NavigationLogo />
 
         <nav className="hidden items-center gap-3 lg:flex">
@@ -110,7 +110,7 @@ const Navbar = () => {
           </nav>
         </div>
       ) : null}
-    </div>
+    </>
   );
 };
 

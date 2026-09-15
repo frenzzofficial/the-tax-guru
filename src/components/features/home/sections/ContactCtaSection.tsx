@@ -9,7 +9,7 @@ const ContactCtaSection = () => {
     <section className="bg-primary py-14 text-primary-foreground lg:py-16">
       <div className="container-page flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
         <div>
-          <span className="text-xs font-semibold tracking-wide text-brand-accent">
+          <span className="text-xs font-semibold tracking-wide text-brand-accent-contrast">
             {contactCta.eyebrow}
           </span>
           <h2 className="mt-2 text-primary-foreground">{contactCta.title}</h2>

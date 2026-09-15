@@ -3,6 +3,10 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  --content-max-width: 80rem;
+  /* 1280px — caps .container-page on large screens */
+  --content-reading-width: 45rem;
+  /* 720px — caps .container-reading for prose/copy */
   --background: oklch(1 0 0);
   --foreground: oklch(0.2005 0.0253 235.0289);
   --card: oklch(1 0 0);

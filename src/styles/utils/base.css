@@ -1,3 +1,9 @@
+/*
+  Clean base stylesheet for Tailwind projects.
+  Keep this file for browser normalization only; put colors, backgrounds,
+  spacing, typography, and component styling in Tailwind utilities/classes.
+*/
+
 *,
 *::before,
 *::after {
@@ -7,7 +13,6 @@
 html {
   min-width: 320px;
   min-height: 100%;
-  scroll-behavior: smooth;
   text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
@@ -16,201 +21,77 @@ html {
 body {
   min-width: 320px;
   min-height: 100vh;
-  /* margin: 0; */
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), sans-serif;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.6;
+  margin: 0;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ========================================
-   Typography
-======================================== */
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0;
-  color: var(--foreground);
-  font-family: var(--font-heading), var(--font-sans), sans-serif;
-  font-weight: 750;
-  line-height: 1.15;
-  letter-spacing: -0.025em;
-  text-wrap: balance;
-}
-
-h1 {
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
-  letter-spacing: -0.045em;
-}
-
-h2 {
-  font-size: clamp(2rem, 4vw, 3rem);
-  letter-spacing: -0.035em;
-}
-
-h3 {
-  font-size: clamp(1.5rem, 2.5vw, 2rem);
-  letter-spacing: -0.025em;
-}
-
-h4 {
-  font-size: 1.375rem;
-}
-
-h5 {
-  font-size: 1.125rem;
-}
-
-h6 {
-  font-size: 1rem;
-}
-
-p {
-  margin: 0;
-  color: var(--foreground);
-  text-wrap: pretty;
-}
-
-strong,
-b {
-  font-weight: 700;
-}
-
-small {
-  font-size: 0.875rem;
-}
-
-blockquote {
+:where(h1, h2, h3, h4, h5, h6, p, blockquote, figure) {
   margin: 0;
 }
 
-::selection {
-  background: var(--brand-primary);
-  color: var(--primary-foreground);
+:where(strong, b) {
+  font-weight: bolder;
 }
 
-/* ========================================
-   Links
-======================================== */
+:where(small) {
+  font-size: 80%;
+}
 
-a {
+:where(a) {
   color: inherit;
-  text-decoration: none;
+  text-decoration: inherit;
 }
 
-a:not([class]) {
-  color: var(--primary);
-  text-decoration: underline;
-  text-decoration-color: color-mix(in oklab, var(--primary) 35%, transparent);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
-  transition:
-    color var(--duration-normal) var(--ease-out),
-    text-decoration-color var(--duration-normal) var(--ease-out);
-}
-
-a:not([class]):hover {
-  color: var(--brand-secondary);
-  text-decoration-color: currentColor;
-}
-
-/* ========================================
-   Lists
-======================================== */
-
-ul,
-ol {
+:where(ul, ol) {
   margin: 0;
   padding: 0;
-  list-style: none;
 }
 
-/* ========================================
-   Images / Media
-======================================== */
-
-img,
-picture,
-svg,
-canvas,
-video {
+:where(img, picture, svg, canvas, video) {
   display: block;
   max-width: 100%;
 }
 
-img,
-video {
+:where(img, video) {
   height: auto;
 }
 
-img {
-  font-style: italic;
-}
-
-svg {
+:where(svg) {
   flex-shrink: 0;
 }
 
-iframe {
+:where(iframe) {
   max-width: 100%;
   border: 0;
 }
 
-/* ========================================
-   Forms
-======================================== */
-
-button,
-input,
-textarea,
-select {
+:where(button, input, textarea, select) {
   margin: 0;
   font: inherit;
   color: inherit;
 }
 
-button,
-select {
+:where(button, select) {
   text-transform: none;
 }
 
-button {
+:where(button, [role="button"]) {
   cursor: pointer;
 }
 
-button:disabled,
-input:disabled,
-textarea:disabled,
-select:disabled {
+:where(button:disabled, input:disabled, textarea:disabled, select:disabled) {
   cursor: not-allowed;
 }
 
-textarea {
+:where(textarea) {
   resize: vertical;
 }
 
-input::placeholder,
-textarea::placeholder {
-  color: var(--muted-foreground);
-  opacity: 0.75;
-}
-
-input,
-textarea,
-select {
+:where(input, textarea, select) {
   min-width: 0;
 }
-
-/* Remove browser search decorations */
 
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button,
@@ -219,96 +100,52 @@ input[type="search"]::-webkit-search-results-decoration {
   appearance: none;
 }
 
-/* Remove number input arrows */
-
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   margin: 0;
   appearance: none;
 }
 
-input[type="number"] {
+:where(input[type="number"]) {
   appearance: textfield;
 }
 
-/* ========================================
-   Tables
-======================================== */
-
-table {
+:where(table) {
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
   text-indent: 0;
 }
 
-/* ========================================
-   HR
-======================================== */
-
-hr {
+:where(hr) {
   height: 0;
   margin: 0;
   border: 0;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid currentColor;
 }
 
-/* ========================================
-   Code
-======================================== */
-
-code,
-kbd,
-pre,
-samp {
-  font-family: var(--font-mono), monospace;
-}
-
-code,
-kbd {
-  font-size: 0.875em;
-}
-
-pre {
+:where(pre) {
   margin: 0;
   overflow-x: auto;
-  font-size: 0.875rem;
-  line-height: 1.7;
   tab-size: 2;
 }
 
-kbd {
-  padding: 0.125rem 0.375rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  background: var(--muted);
-  box-shadow: 0 1px 0 var(--border);
-}
-
-/* ========================================
-   Accessibility
-======================================== */
-
-:focus {
+:where(:focus) {
   outline: none;
 }
 
-:focus-visible {
-  outline: var(--focus-width) solid var(--ring);
-  outline-offset: var(--focus-offset);
+:where(:focus-visible) {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
 }
 
-[hidden] {
+:where([hidden]) {
   display: none;
 }
 
-[aria-disabled="true"] {
+:where([aria-disabled="true"]) {
   cursor: not-allowed;
 }
-
-/* ========================================
-   Reduced Motion
-======================================== */
 
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -325,236 +162,7 @@ kbd {
   }
 }
 
-/* ========================================
-   Scrollbar
-======================================== */
-
-html {
-  scrollbar-width: thin;
-  scrollbar-color: var(--muted-foreground) var(--background);
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--background);
-}
-
-::-webkit-scrollbar-thumb {
-  border: 3px solid var(--background);
-  border-radius: var(--radius-full);
-  background: var(--muted-foreground);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--brand-primary);
-}
-
-/* ========================================
-   Root Application
-======================================== */
-
-#__next {
-  min-height: 100vh;
-}
-
+#__next,
 body > div {
   min-height: 100vh;
-}
-
-/* ========================================
-   Text Utilities
-======================================== */
-
-.text-balance {
-  text-wrap: balance;
-}
-
-.text-pretty {
-  text-wrap: pretty;
-}
-
-.text-muted {
-  color: var(--muted-foreground);
-}
-
-.text-primary {
-  color: var(--primary);
-}
-
-.text-secondary {
-  color: var(--secondary);
-}
-
-.text-brand {
-  color: var(--brand-primary);
-}
-
-.text-accent {
-  color: var(--brand-accent);
-}
-
-/* ========================================
-   Surface Utilities
-======================================== */
-
-.surface {
-  background-color: var(--surface-1);
-}
-
-.surface-muted {
-  background-color: var(--surface-2);
-}
-
-/* ========================================
-   Container
-======================================== */
-
-.container-page {
-  width: min(calc(100% - 2rem), var(--content-max-width));
-  margin-inline: auto;
-}
-
-.container-reading {
-  width: min(calc(100% - 2rem), var(--content-reading-width));
-  margin-inline: auto;
-}
-
-/* ========================================
-   Responsive Container
-======================================== */
-
-@media (min-width: 640px) {
-  .container-page,
-  .container-reading {
-    width: min(calc(100% - 3rem), var(--content-max-width));
-  }
-}
-
-@media (min-width: 1024px) {
-  .container-page,
-  .container-reading {
-    width: min(calc(100% - 4rem), var(--content-max-width));
-  }
-}
-
-/* ========================================
-   Prose Defaults
-======================================== */
-
-.prose {
-  max-width: var(--content-reading-width);
-  color: var(--foreground);
-  font-size: 1.0625rem;
-  line-height: 1.8;
-}
-
-.prose > * + * {
-  margin-top: 1.25em;
-}
-
-.prose h2,
-.prose h3,
-.prose h4 {
-  margin-top: 2em;
-  margin-bottom: 0.75em;
-}
-
-.prose a {
-  color: var(--primary);
-  text-decoration: underline;
-  text-decoration-color: color-mix(in oklab, var(--primary) 35%, transparent);
-  text-underline-offset: 3px;
-}
-
-.prose ul,
-.prose ol {
-  padding-left: 1.5rem;
-}
-
-.prose ul {
-  list-style: disc;
-}
-
-.prose ol {
-  list-style: decimal;
-}
-
-.prose li + li {
-  margin-top: 0.5rem;
-}
-
-.prose blockquote {
-  padding-left: 1rem;
-  border-left: 3px solid var(--primary);
-  color: var(--muted-foreground);
-}
-
-.prose img {
-  border-radius: var(--radius-lg);
-}
-
-/* ========================================
-   Mobile Typography
-======================================== */
-
-@media (max-width: 639px) {
-  body {
-    font-size: 0.9375rem;
-  }
-
-  h1 {
-    letter-spacing: -0.04em;
-  }
-
-  h2 {
-    letter-spacing: -0.03em;
-  }
-
-  .container-page,
-  .container-reading {
-    width: min(calc(100% - 2rem), var(--content-max-width));
-  }
-}
-
-/* ========================================
-   Print
-======================================== */
-
-@media print {
-  *,
-  *::before,
-  *::after {
-    background: transparent;
-    box-shadow: none;
-    color: #000;
-    text-shadow: none;
-  }
-
-  a,
-  a:visited {
-    text-decoration: underline;
-  }
-
-  a[href]::after {
-    content: " (" attr(href) ")";
-  }
-
-  pre,
-  blockquote {
-    border: 1px solid #999;
-    page-break-inside: avoid;
-  }
-
-  img {
-    page-break-inside: avoid;
-  }
-
-  h2,
-  h3 {
-    page-break-after: avoid;
-  }
 }

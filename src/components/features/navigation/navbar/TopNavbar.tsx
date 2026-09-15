@@ -14,7 +14,7 @@ const socialLinks = [
 ].filter((entry) => entry.href && entry.href !== "/");
 const TopNavbar = () => {
   return (
-    <div className="hidden bg-secondary text-secondary-foreground md:block px-5">
+    <div className="hidden bg-secondary text-secondary-foreground md:block">
       <div className="container-page flex h-10 items-center justify-between text-xs">
         <div className="flex items-center gap-5">
           <ContactInfo />

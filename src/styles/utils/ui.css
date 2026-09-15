@@ -154,7 +154,6 @@
      ======================================== */
 
   .ui-whatsapp-button {
-    position: relative;
     isolation: isolate;
 
     display: inline-flex;

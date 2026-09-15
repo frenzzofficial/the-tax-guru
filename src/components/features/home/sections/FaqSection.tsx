@@ -41,7 +41,7 @@ const FaqSection = () => {
                   key={point}
                   className="flex items-center gap-2 text-sm text-primary-foreground/90"
                 >
-                  <CheckIcon className="size-4 text-brand-accent" />
+                  <CheckIcon className="size-4 text-brand-accent-foreground" />
                   {point}
                 </li>
               ))}

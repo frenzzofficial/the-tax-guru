@@ -1,5 +1,5 @@
 @import "tailwindcss";
-/* @import "./utils/base.css"; */
+@import "./utils/base.css";
 @import "./utils/ui.css";
 @import "./theme/the-tax-guru-theme.css";
 @import "./theme/brand-theme.css";

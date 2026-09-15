@@ -3,7 +3,7 @@ import { appConfig } from "@/packages/configs/app.config";
 
 const FooterBottomBar = () => (
   <div className="border-t border-secondary-foreground/10 py-5">
-    <div className="container-page flex flex-col gap-3 text-xs text-secondary-foreground/60 sm:flex-row sm:items-center sm:justify-between">
+    <div className="container-page flex flex-col gap-3 text-xs text-secondary-foreground/70 sm:flex-row sm:items-center sm:justify-between">
       <p>{appConfig.footer.copyright}</p>
 
       <ul className="flex flex-wrap items-center gap-x-5 gap-y-2">
@@ -13,7 +13,7 @@ const FooterBottomBar = () => (
               href={item.href}
               variant="nav"
               size="sm"
-              className="!min-h-0 text-secondary-foreground/60 hover:text-brand-accent"
+              className="min-h-0! text-secondary-foreground/70 hover:text-brand-accent"
             >
               {item.label}
             </Link>

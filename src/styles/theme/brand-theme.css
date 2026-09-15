@@ -6,6 +6,23 @@
   --brand-secondary: #005a87;
   --brand-accent: #12eaa6;
   --brand-accent-foreground: #063d2f;
+  /* Contrast-safe variant of brand-accent for use as TEXT on dark/
+         primary backgrounds — raw --brand-accent only hits ~3.2:1 on
+         --primary, which fails WCAG AA (4.5:1) for small text. This
+         tint clears 4.5:1 while staying visibly on-brand. Use
+         --brand-accent-foreground instead when brand-accent is used
+         as text/icon color on light backgrounds (it hits ~12:1 there,
+         vs ~1.6:1 for the raw accent). */
+  --brand-accent-contrast: color-mix(in oklch, var(--brand-accent) 75%, white);
+
+  /* Layout — consumed by .container-page / .container-reading in
+         utils/base.css. These were previously undefined, which made
+         var(--content-max-width) invalid and silently dropped the
+         width rule, leaving pages uncapped on large screens. */
+  --content-max-width: 80rem;
+  /* 1280px */
+  --content-reading-width: 45rem;
+  /* 720px */
 }
 
 @theme inline {
@@ -13,4 +30,5 @@
   --color-brand-secondary: var(--brand-secondary);
   --color-brand-accent: var(--brand-accent);
   --color-brand-accent-foreground: var(--brand-accent-foreground);
+  --color-brand-accent-contrast: var(--brand-accent-contrast);
 }
